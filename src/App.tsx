@@ -147,22 +147,13 @@ function App() {
         </div>
       </section>
 
-      
-      {/* NEW Event Schedule Section */}
-           {/* === MODERN EVENT SCHEDULE === */}
+      {/* Modern Event Schedule Section */}
       <section className="event-schedule-section w-full px-4 py-16 text-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 text-center drop-shadow-md">EVENT SCHEDULE</h2>
           
           <div className="schedule-buttons-container">
-            {[
-              "READY JULY 5",
-              "SATURDAY JULY 6", 
-              "JUNE 7",
-              "BEST SALES",
-              "FREE DAYS",
-              "HOURS 9AM-4PM"
-            ].map((item, index) => (
+            {scheduleItems.map((item, index) => (
               <button 
                 key={index}
                 className="schedule-button"
