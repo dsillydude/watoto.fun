@@ -20,6 +20,23 @@
   100% { transform: translateX(0) translateY(0); }
 }
 
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes gentleBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes gentleWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(3deg); }
+  75% { transform: rotate(-3deg); }
+}
+
 /* Header Styles */
 .kidcamp-header {
   background: linear-gradient(135deg, var(--main-blue), var(--grass-green));
@@ -121,32 +138,34 @@
 }
 
 /* Event Schedule Section */
+.event-schedule-section {
+  background: linear-gradient(135deg, #00c6a7 0%, #1e4d92 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+
 .schedule-buttons-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
-  margin-top: 30px;
+  gap: 16px;
+  margin-top: 40px;
 }
 
 .schedule-button {
-  background: white;
-  color: var(--grass-green);
-  padding: 12px 25px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 14px 28px;
   border-radius: 50px;
-  font-weight: 800;
-  font-size: 1rem;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.4s;
 }
 
 .schedule-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-  background: var(--light-yellow);
-  color: var(--accent-red);
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 /* CTA Button */
@@ -169,6 +188,39 @@
   box-shadow: 0 2px 0 var(--accent-red);
 }
 
+/* Playful Activity Cards Additions */
+.dark .bg-blue-100 {
+  background-color: rgba(147, 197, 253, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.dark .bg-pink-100 {
+  background-color: rgba(249, 168, 212, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.dark .bg-purple-100 {
+  background-color: rgba(216, 180, 254, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.emoji-bounce {
+  animation: gentleBounce 3s infinite ease-in-out;
+}
+
+.character-container {
+  perspective: 1000px;
+}
+
+.character-3d {
+  transition: transform 0.5s ease;
+  transform-style: preserve-3d;
+}
+
+.character-container:hover .character-3d {
+  transform: rotateY(15deg) rotateX(5deg);
+}
+
 /* Dark Mode Adjustments */
 .dark .activity-card {
   background: #2d3748;
@@ -187,6 +239,10 @@
 .dark .schedule-button:hover {
   background: var(--light-yellow);
   color: var(--accent-red);
+}
+
+.dark .event-schedule-section {
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
 }
 
 /* Mobile Responsiveness */
@@ -214,88 +270,4 @@
     padding: 10px 20px;
     font-size: 0.9rem;
   }
-}
-
-/* === Modern Event Schedule === */
-.event-schedule-section {
-  background: linear-gradient(135deg, #00c6a7 0%, #1e4d92 100%);
-  background-size: 200% 200%;
-  animation: gradientShift 8s ease infinite;
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.schedule-buttons-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 40px;
-}
-
-.schedule-button {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  color: white;
-  padding: 14px 28px;
-  border-radius: 50px;
-  font-weight: 700;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.4s;
-}
-
-.schedule-button:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.25);
-}
-
-/* Dark Mode */
-.dark .event-schedule-section {
-  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-}
-
-/* === Modern Event Schedule === */
-.event-schedule-section {
-  background: linear-gradient(135deg, #00c6a7 0%, #1e4d92 100%);
-  background-size: 200% 200%;
-  animation: gradientShift 8s ease infinite;
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.schedule-buttons-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 40px;
-}
-
-.schedule-button {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  color: white;
-  padding: 14px 28px;
-  border-radius: 50px;
-  font-weight: 700;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.4s;
-}
-
-.schedule-button:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.25);
-}
-
-/* Dark Mode */
-.dark .event-schedule-section {
-  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
 }
