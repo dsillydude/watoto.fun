@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import './KidCampStyles.css'; // Create this new CSS file
+import './KidCampStyles.css';
 
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
@@ -37,9 +37,8 @@ function App() {
 
   return (
     <div className="min-h-screen bg-sky-100 dark:bg-gray-900 font-sans transition-colors duration-500 overflow-x-hidden w-full">
-      {/* KidCamp Animated Header - Replaces your existing header */}
+      {/* KidCamp Animated Header */}
       <header className="kidcamp-header relative">
-        {/* Floating Clouds */}
         <i className="fas fa-cloud cloud" style={{ top: '20%', left: '10%' }}></i>
         <i className="fas fa-cloud cloud" style={{ 
           top: '15%', 
@@ -48,7 +47,6 @@ function App() {
           animationDirection: 'reverse' 
         }}></i>
         
-        {/* Theme Toggle (positioned absolutely) */}
         <button 
           onClick={toggleTheme}
           className="absolute top-4 right-4 p-2 rounded-md bg-white/30 dark:bg-gray-700/80 text-gray-800 dark:text-gray-200 z-50 transition-transform transform hover:scale-110"
@@ -57,7 +55,6 @@ function App() {
           {theme === 'light' ? '🌙' : '☀️'}
         </button>
         
-        {/* Mobile Menu Button */}
         <button 
           onClick={toggleMobileMenu}
           className="md:hidden absolute top-4 left-4 text-white p-2 rounded-md hover:bg-white/20 z-50"
@@ -98,35 +95,57 @@ function App() {
         </div>
       </section>
 
-      {/* Your Existing Videos Section (with dark mode support) */}
+      {/* Restored Video Grid - Original Style */}
       <section id="videos" className="w-full px-4 py-16">
         <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-8 text-center">Videos</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
           {[1, 2, 3].map((item) => (
             <div 
               key={item} 
               onClick={() => handleVideoClick(item)}
-              className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center cursor-pointer hover:shadow-xl hover:scale-105 transition-all duration-300 transform"
+              className="group bg-white dark:bg-gray-800 p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer"
             >
-              {/* ... your existing video thumbnail code ... */}
+              <div className={`relative w-full aspect-video rounded-lg mb-4 overflow-hidden ${
+                item === 1 ? 'bg-gradient-to-br from-blue-200 to-blue-400 dark:from-blue-700 dark:to-blue-900' : 
+                item === 2 ? 'bg-gradient-to-br from-pink-200 to-pink-400 dark:from-pink-700 dark:to-pink-900' : 
+                'bg-gradient-to-br from-purple-200 to-purple-400 dark:from-purple-700 dark:to-purple-900'
+              }`}>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-white/90 dark:bg-gray-800/90 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-500 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <div className="h-4 w-3/4 bg-gray-200 dark:bg-gray-600 rounded-full mx-auto"></div>
+                <div className="h-3 w-1/2 bg-gray-200 dark:bg-gray-600 rounded-full mx-auto"></div>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Your Existing Songs Section */}
+      {/* Songs Section */}
       <section id="songs" className="w-full px-4 py-16 bg-gray-50 dark:bg-gray-800 transition-colors duration-500 rounded-t-lg">
-        {/* ... your existing songs section code ... */}
+        <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-8 text-center">Songs</h2>
+        <p className="text-gray-600 dark:text-gray-400 text-center">Song section coming soon! Add interactive song elements here.</p>
+        <div className="max-w-md mx-auto mt-6 p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:shadow-md transition-shadow cursor-pointer">
+          <p className="text-gray-800 dark:text-gray-200 font-semibold">Twinkle Twinkle Little Star</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">Click to play (placeholder)</p>
+        </div>
       </section>
 
-      {/* KidCamp CTA Button */}
+      {/* CTA Button */}
       <div className="text-center my-12">
         <button className="cta-button dark:bg-orange-700 dark:hover:bg-orange-800">
           Join the Fun!
         </button>
       </div>
 
-      {/* Your Existing Footer */}
+      {/* Footer */}
       <footer className="bg-gray-800 dark:bg-black text-white dark:text-gray-400 text-center py-6 mt-0">
         <p>&copy; 2025 Watoto Fun. All rights reserved.</p>
       </footer>
