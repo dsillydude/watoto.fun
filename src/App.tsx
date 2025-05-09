@@ -28,16 +28,25 @@ function App() {
     alert(`Video ${videoId} clicked! Placeholder action.`);
   };
 
-  // KidCamp Activities Data
+  // Data
   const activities = [
     { icon: "🎮", title: "Games", description: "Fun educational games for kids!" },
     { icon: "📺", title: "Videos", description: "Safe, entertaining videos" },
     { icon: "🎵", title: "Songs", description: "Interactive music and rhymes" }
   ];
 
+  const scheduleItems = [
+    "READY JULY 5",
+    "SATURDAY JULY 6", 
+    "JUNE 7",
+    "BEST SALES",
+    "FREE DAYS",
+    "HOURS 9AM-4PM"
+  ];
+
   return (
     <div className="min-h-screen bg-sky-100 dark:bg-gray-900 font-sans transition-colors duration-500 overflow-x-hidden w-full">
-      {/* KidCamp Animated Header */}
+      {/* KidCamp Header */}
       <header className="kidcamp-header relative">
         <i className="fas fa-cloud cloud" style={{ top: '20%', left: '10%' }}></i>
         <i className="fas fa-cloud cloud" style={{ 
@@ -81,7 +90,7 @@ function App() {
         </nav>
       )}
 
-      {/* KidCamp Activities Section */}
+      {/* Activities Section */}
       <section id="activities" className="w-full px-4 py-16">
         <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-8 text-center">Our Activities</h2>
         <div className="activities-grid">
@@ -95,7 +104,7 @@ function App() {
         </div>
       </section>
 
-      {/* Restored Video Grid - Original Style */}
+      {/* Videos Section */}
       <section id="videos" className="w-full px-4 py-16">
         <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-8 text-center">Videos</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
@@ -135,6 +144,24 @@ function App() {
         <div className="max-w-md mx-auto mt-6 p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:shadow-md transition-shadow cursor-pointer">
           <p className="text-gray-800 dark:text-gray-200 font-semibold">Twinkle Twinkle Little Star</p>
           <p className="text-sm text-gray-500 dark:text-gray-400">Click to play (placeholder)</p>
+        </div>
+      </section>
+
+      {/* NEW Event Schedule Section */}
+      <section className="w-full px-4 py-16 bg-gradient-to-r from-green-500 to-green-600 dark:from-green-700 dark:to-green-800 text-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold mb-10 text-center drop-shadow-md">EVENT SCHEDULE</h2>
+          
+          <div className="schedule-buttons-container">
+            {scheduleItems.map((item, index) => (
+              <button 
+                key={index}
+                className="schedule-button"
+              >
+                {item}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
