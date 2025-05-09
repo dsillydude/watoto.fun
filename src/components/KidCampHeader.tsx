@@ -1,16 +1,22 @@
-import React from 'react';
+// Remove the unused React import and use JSX directly
 import './KidCampStyles.css';
 
 const KidCampHeader = () => {
   return (
-    <header className="kidcamp-header">
+    <header className="kidcamp-header relative">
+      {/* Floating Clouds */}
       <i className="fas fa-cloud cloud" style={{ top: '20%', left: '10%' }}></i>
-      <i className="fas fa-cloud cloud" style={{ top: '15%', right: '15%', animationDuration: '18s', animationDirection: 'reverse' }}></i>
+      <i className="fas fa-cloud cloud" style={{ 
+        top: '15%', 
+        right: '15%', 
+        animationDuration: '18s', 
+        animationDirection: 'reverse' 
+      }}></i>
       
-      <h1 style={{ fontFamily: "'Baloo 2', cursive", fontSize: '3.5rem', margin: '10px 0' }}>Watoto Fun</h1>
+      <h1 className="header-title">Watoto Fun</h1>
       
       <div className="logo-circle">
-        <div style={{ fontFamily: "'Baloo 2', cursive", fontWeight: 800, fontSize: '2rem', color: 'var(--accent-red)' }}>PLAY</div>
+        <div className="logo-text">PLAY</div>
       </div>
     </header>
   );
