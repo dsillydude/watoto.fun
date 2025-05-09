@@ -1,7 +1,101 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import './App.css';
 import './KidCampStyles.css';
 
+// New component - paste this in src/components/PlayfulActivityCard.tsx
+const PlayfulActivityCard = () => {
+  const activities = [
+    {
+      emoji: "🎮",
+      title: "Games",
+      description: "Fun learning adventures!",
+      color: "bg-blue-100"
+    },
+    {
+      emoji: "🎵",
+      title: "Music",
+      description: "Sing and dance along!",
+      color: "bg-pink-100"
+    },
+    {
+      emoji: "🎨",
+      title: "Art",
+      description: "Create masterpieces!",
+      color: "bg-purple-100"
+    }
+  ];
+
+  return (
+    <div className="py-10 px-4">
+      <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white">
+        Let's Play Together!
+      </h2>
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {activities.map((activity, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            viewport={{ once: true }}
+          >
+            <div className={`${activity.color} rounded-3xl p-6 shadow-lg hover:shadow-xl transition-shadow h-full dark:bg-opacity-20`}>
+              <motion.div
+                animate={{ 
+                  y: [0, -10, 0],
+                  rotate: [0, 5, -5, 0]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="text-6xl text-center mb-4"
+              >
+                {activity.emoji}
+              </motion.div>
+              
+              <h3 className="text-xl font-bold text-center mb-2 dark:text-white">{activity.title}</h3>
+              <p className="text-center mb-4 dark:text-gray-200">{activity.description}</p>
+              
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`w-full py-2 px-4 rounded-full font-bold ${
+                  index === 0 ? "bg-blue-400 hover:bg-blue-500" :
+                  index === 1 ? "bg-pink-400 hover:bg-pink-500" :
+                  "bg-purple-400 hover:bg-purple-500"
+                } text-white`}
+              >
+                Play Now
+              </motion.button>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+      
+      <div className="mt-12 flex justify-center">
+        <motion.img
+          src="/assets/kid-mascot.png" // Replace with your image
+          alt="Friendly Robot"
+          className="h-40"
+          animate={{
+            y: [0, -15, 0],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      </div>
+    </div>
+  );
+};
+
+// Main App Component
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -28,13 +122,6 @@ function App() {
     alert(`Video ${videoId} clicked! Placeholder action.`);
   };
 
-  // Data
-  const activities = [
-    { icon: "🎮", title: "Games", description: "Fun educational games for kids!" },
-    { icon: "📺", title: "Videos", description: "Safe, entertaining videos" },
-    { icon: "🎵", title: "Songs", description: "Interactive music and rhymes" }
-  ];
-
   const scheduleItems = [
     "READY JULY 5",
     "SATURDAY JULY 6", 
@@ -46,7 +133,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-sky-100 dark:bg-gray-900 font-sans transition-colors duration-500 overflow-x-hidden w-full">
-      {/* KidCamp Header */}
+      {/* Header */}
       <header className="kidcamp-header relative">
         <i className="fas fa-cloud cloud" style={{ top: '20%', left: '10%' }}></i>
         <i className="fas fa-cloud cloud" style={{ 
@@ -90,19 +177,8 @@ function App() {
         </nav>
       )}
 
-      {/* Activities Section */}
-      <section id="activities" className="w-full px-4 py-16">
-        <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-8 text-center">Our Activities</h2>
-        <div className="activities-grid">
-          {activities.map((activity, index) => (
-            <div key={index} className="activity-card dark:bg-gray-800 dark:text-gray-200">
-              <div className="activity-icon text-4xl">{activity.icon}</div>
-              <h3 className="text-xl font-bold text-cyan-600 dark:text-cyan-400">{activity.title}</h3>
-              <p className="text-gray-600 dark:text-gray-300">{activity.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* New Playful Activity Cards */}
+      <PlayfulActivityCard />
 
       {/* Videos Section */}
       <section id="videos" className="w-full px-4 py-16">
@@ -140,24 +216,16 @@ function App() {
       {/* Songs Section */}
       <section id="songs" className="w-full px-4 py-16 bg-gray-50 dark:bg-gray-800 transition-colors duration-500 rounded-t-lg">
         <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-8 text-center">Songs</h2>
-        <p className="text-gray-600 dark:text-gray-400 text-center">Song section coming soon! Add interactive song elements here.</p>
-        <div className="max-w-md mx-auto mt-6 p-4 bg-white dark:bg-gray-700 rounded-lg shadow hover:shadow-md transition-shadow cursor-pointer">
-          <p className="text-gray-800 dark:text-gray-200 font-semibold">Twinkle Twinkle Little Star</p>
-          <p className="text-sm text-gray-500 dark:text-gray-400">Click to play (placeholder)</p>
-        </div>
+        <p className="text-gray-600 dark:text-gray-400 text-center">Song section coming soon!</p>
       </section>
 
-      {/* Modern Event Schedule Section */}
+      {/* Event Schedule */}
       <section className="event-schedule-section w-full px-4 py-16 text-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 text-center drop-shadow-md">EVENT SCHEDULE</h2>
-          
           <div className="schedule-buttons-container">
             {scheduleItems.map((item, index) => (
-              <button 
-                key={index}
-                className="schedule-button"
-              >
+              <button key={index} className="schedule-button">
                 {item}
               </button>
             ))}
