@@ -19,7 +19,13 @@
   margin-bottom: 40px;
 }
 
-/* Logo Circle */
+.header-title {
+  font-family: 'Baloo 2', cursive;
+  font-size: 3.5rem;
+  margin: 10px 0;
+  text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+}
+
 .logo-circle {
   width: 200px;
   height: 200px;
@@ -33,9 +39,11 @@
   animation: pulse 2s infinite alternate;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.05); }
+.logo-text {
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--accent-red);
 }
 
 /* Floating Clouds */
@@ -45,6 +53,66 @@
   z-index: 1;
   font-size: 3rem;
   animation: float 15s infinite linear;
+  color: white;
 }
 
-/* Add more styles as needed... */
+/* Activities Grid */
+.activities-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 40px auto;
+  max-width: 1000px;
+}
+
+.activity-card {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  width: 250px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s;
+}
+
+.activity-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.activity-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+/* CTA Button */
+.cta-button {
+  background: var(--main-orange);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 5px 0 var(--accent-red);
+  transition: all 0.2s;
+}
+
+.cta-button:hover {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 var(--accent-red);
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+@keyframes float {
+  0% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(50px) translateY(-20px); }
+  100% { transform: translateX(0) translateY(0); }
+}
